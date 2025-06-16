@@ -19,10 +19,17 @@ Output: [[0,1],[1,0]]
 public class LP46_All_Possible_Permutations {
 
 	public static void main(String[] args) {
+		// For int array
 		int arr[] = {1,2,3};
 		List<List<Integer>> result = allPermutations(arr);
-		
 		for(List<Integer> perm: result) {
+			System.out.println(perm);
+		}
+		
+		// For String
+		String s = "abc";
+		List<String> strResults = allPermutationsString(s);
+		for(String perm : strResults) {
 			System.out.println(perm);
 		}
 	}
@@ -34,7 +41,6 @@ public class LP46_All_Possible_Permutations {
 	}
 	
 	public static void backTrack(int[] arr, int index, List<List<Integer>> result) {
-		
 		if(index == arr.length) {
 			List<Integer> perm = new ArrayList<>();
 			for(int num : arr) {
@@ -54,5 +60,32 @@ public class LP46_All_Possible_Permutations {
 		int temp = arr[start];
 		arr[start] = arr[end];
 		arr[end] = temp;
+	}
+	
+	/*
+	Finding all possible permutations for string
+	 */	
+	public static List<String> allPermutationsString(String s){
+		List<String> result = new ArrayList<>();
+		backTrack(s.toCharArray(), 0, result);
+		return result;
+	}
+	
+	static void backTrack(char[] chars, int index, List<String> result) {
+		if(index == chars.length) {
+			result.add(new String(chars));
+			return;
+		}
+		for(int i=index; i<chars.length; i++) {
+			swap(chars, index, i);
+			backTrack(chars, index+1, result);
+			swap(chars, index, i);
+		}
+	}
+	
+	private static void swap(char[] chars, int start, int end) {
+		char temp = chars[start];
+		chars[start] = chars[end];
+		chars[end] = temp;
 	}
 }
