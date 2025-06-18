@@ -11,11 +11,24 @@ public class Test {
 		System.out.println(palindromString("abcb"));
 		System.out.println(isPrime(5));
 		System.out.println(moveHashToFront("Hello##"));
+		
+		int[] nums = {1,0,32,0,22};
+		moveZeros(nums);
+		System.out.println(Arrays.toString(nums));
+		
 		System.out.println(longestUniqueSubstr("abcabcd"));
 		System.out.println(countFreq("HelloHh"));
 		System.out.println(removeVowels("aeisw"));
 		System.out.println(areAnagrams("hello", "lleho"));
 		System.out.println(toTitleCase("welcome all"));
+		
+		System.out.println(stringRev("abcd"));
+		System.out.println(numberRev(123));
+		
+		System.out.println(secLar(nums));
+		int[] sort012 = {1,0,2,1,1,0};
+		sort012(sort012);
+		System.out.println(Arrays.toString(sort012));
 	}
 	
 	public static boolean palindrome(int num) {
@@ -60,6 +73,31 @@ public class Test {
 	    return hash.append(other).toString();
 	}
 	
+	public static void moveZeros(int[] nums) {
+		int index = 0;
+		for(int i=0; i<nums.length; i++) {
+			if(nums[i] !=0) {
+				nums[index++] = nums[i];
+			}
+		}
+		while(index<nums.length) {
+			nums[index++] = 0;
+		}
+/*		int size = 0;
+		int[] result = new int[nums.length];
+		for(int n : nums) {
+			if(n != 0) {
+				result[size]=n;
+				size++;
+			}
+		}
+		while(size<nums.length) {
+			result[size]=0;
+			size++;
+		}
+		return result; */
+	}
+	
 	public static int longestUniqueSubstr(String s) {
 	    Map<Character, Integer> mapStr = new HashMap<>();
 	    int left = 0; int maxLength = 0;
@@ -96,14 +134,89 @@ public class Test {
 	}
 
 	public static String toTitleCase(String input) {
-	    String[] words = input.toLowerCase().split(" ");
-	    StringBuilder result = new StringBuilder();
-	    for (String word : words) {
-	        if (word.length() > 0) {
-	            result.append(Character.toUpperCase(word.charAt(0)))
-	                  .append(word.substring(1)).append(" ");
-	        }
-	    }
-	    return result.toString().trim();
+		String[] words = input.toLowerCase().split(" ");
+		StringBuilder result = new StringBuilder();
+		
+		for(String word : words) {
+			if(word.length()>0) {
+				result.append(Character.toUpperCase(word.charAt(0)))
+				.append(word.substring(1))
+				.append(" ");
+			}
+		}
+		return result.toString().trim();
 	}
+	
+	public static String stringRev(String s) {
+		int left = 0;
+		int right = s.length()-1;
+		char[] chars = s.toCharArray();
+		while (left < right) {
+			char temp = chars[left];
+			chars[left] = chars[right];
+			chars[right] = temp;
+			left++;
+			right--;
+		}
+		return new String(chars);
+	}
+	
+	public static int numberRev(int num) {
+		int rev = 0;
+		
+		while(num != 0) {
+			int rem = num%10;
+			rev = rev *10 + rem;
+			num/=10;
+		}
+		return rev;
+	}
+	
+	public static int secLar(int[] nums) {
+		int largest = nums[0];
+		int secLargest = nums[0];
+		for(int num : nums) {
+			if(num>largest) {
+				secLargest = largest;
+				largest = num;
+			}
+			else if(num > secLargest && num != largest) {
+				secLargest = num;
+			}
+		}
+		return secLargest;
+	}
+	
+	public static void sort012(int[] nums) {
+		int low = 0, mid=0, high=nums.length-1;
+		while(mid<=high) {
+			if(nums[mid]==0) {
+				int temp = nums[low];
+				nums[low] = nums[mid];
+				nums[mid]=temp;
+				low++; mid++;
+			}
+			else if(nums[mid]==1) {
+				mid++;
+			}
+			else {
+				int temp = nums[mid];
+				nums[mid] = nums[high];
+				nums[high] = temp;
+				high--;
+			}
+		}
+	}
+	
+//	Kadane’s Algorithm
+	public static int maxSubArr(int[] arr) {
+		int maxSum = 0;
+		int currSum = 0;
+		for(int i=0; i<arr.length; i++) {
+			currSum = Math.max(currSum, arr[i]+currSum);
+			maxSum = Math.max(maxSum, currSum);
+		}
+		return maxSum;
+	}
+	
 }
