@@ -123,6 +123,22 @@ public class Test {
 	    return maxLength;
 	}
 	
+	public static int lengthOfLongestSubString(String str) {
+		int i =0, max = 0, j=0;
+		Set<Character> set = new HashSet<Character>();
+		while(i<str.length()) {
+			if(!set.contains(str.charAt(i))) {
+				set.add(str.charAt(i++));
+				max = Math.max(max, set.size());
+			}
+			else {
+				set.remove(str.charAt(j++));
+			}
+		}
+		return max;
+	}
+
+	
 	public static Map<Character, Integer> countFreq(String s){
 		Map<Character, Integer> map = new HashMap<>();
 	    for (char c : s.toCharArray()) {
@@ -265,19 +281,4 @@ public class Test {
 	    return prefix;
 	}
 	
-	public static int lengthOfLongestSubString(String str) {
-		int i =0, max = 0, j=0;
-		Set<Character> set = new HashSet<Character>();
-		while(i<str.length()) {
-			if(!set.contains(str.charAt(i))) {
-				set.add(str.charAt(i++));
-				max = Math.max(max, set.size());
-			}
-			else {
-				set.remove(str.charAt(j++));
-			}
-		}
-		return max;
-	}
-
 }
