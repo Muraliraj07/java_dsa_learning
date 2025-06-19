@@ -2,7 +2,10 @@ package logical_questions;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Test {
 
@@ -29,6 +32,14 @@ public class Test {
 		int[] sort012 = {1,0,2,1,1,0};
 		sort012(sort012);
 		System.out.println(Arrays.toString(sort012));
+		
+		System.out.println(removeDuplicates("Hello"));
+		System.out.println(firstNonRepChar("HHello"));
+		
+		String[] arr = {"welc", "we", "welcome"};
+		System.out.println(longestCommonPrefix(arr));
+		
+		System.out.println("lengthOfLongestSubString -> "+lengthOfLongestSubString("abcabcd"));
 	}
 	
 	public static boolean palindrome(int num) {
@@ -219,4 +230,54 @@ public class Test {
 		return maxSum;
 	}
 	
+	public static String removeDuplicates(String str) {
+		StringBuilder result = new StringBuilder();
+		Set<Character> seen = new HashSet<>();
+		for (char c : str.toCharArray()) {
+		    if (seen.add(c)) result.append(c);
+		}
+		return result.toString();
+	}
+	
+	public static Character firstNonRepChar(String str) {
+		LinkedHashMap<Character, Integer> freqMap = new LinkedHashMap<Character, Integer>();
+		
+		for(char c : str.toCharArray()) {
+			freqMap.put(c, freqMap.getOrDefault(c, 0) +1);
+		}
+		
+		for(Map.Entry<Character, Integer> e: freqMap.entrySet()) {
+			if(e.getValue()==1) {
+				return e.getKey();
+			}
+		}
+		return null;
+	}
+	
+	public static String longestCommonPrefix(String[] strs) {
+	    if (strs == null || strs.length == 0) return "";
+	    String prefix = strs[0];
+	    for (int i = 1; i < strs.length; i++) {
+	    	System.out.println(strs[i].indexOf(prefix));
+	        while (strs[i].indexOf(prefix) != 0)
+	            prefix = prefix.substring(0, prefix.length() - 1);
+	    }
+	    return prefix;
+	}
+	
+	public static int lengthOfLongestSubString(String str) {
+		int i =0, max = 0, j=0;
+		Set<Character> set = new HashSet<Character>();
+		while(i<str.length()) {
+			if(!set.contains(str.charAt(i))) {
+				set.add(str.charAt(i++));
+				max = Math.max(max, set.size());
+			}
+			else {
+				set.remove(str.charAt(j++));
+			}
+		}
+		return max;
+	}
+
 }
