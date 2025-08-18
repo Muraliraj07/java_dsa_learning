@@ -25,7 +25,7 @@ Output: [1,3,12,0,0]
 public class LP283_Move_Zeros {
 
 	public static void main(String[] args) {
-		int[] nums = {0,1,0,3,12};
+		int[] nums = {0, 1, 0, 3, 12, 0};
 //		moveZerosToEnd(nums);
 //		System.out.println(Arrays.toString(nums));
 		
@@ -51,9 +51,10 @@ public class LP283_Move_Zeros {
 // 2. MOVE ZEROS TO START
 	public static void moveZerosToStart(int[] nums) {
 		int index = nums.length-1;
-		for(int num : nums) {
-			if(num != 0) {
-				nums[index--]=num;
+		for(int i = nums.length-1; i >=0; i--) {
+			if(nums[i] != 0) {
+				nums[index] = nums[i];
+				index--;
 			}
 		}
 		while(index >= 0) {

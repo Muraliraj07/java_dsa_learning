@@ -40,6 +40,7 @@ public class LP53_Maximum_Subarray {
 		int currentSum = nums[0];
 		
 		for(int i=1; i<nums.length; i++) {
+			//Eg: currentSum = Math.max(4, -5 + 4) = Math.max(4, -1) = 4
 			currentSum = Math.max(nums[i], currentSum+nums[i]);
 			maxSum = Math.max(maxSum, currentSum);
 		}
