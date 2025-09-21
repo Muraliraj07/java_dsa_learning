@@ -27,7 +27,9 @@ public class EX_SortEvenAscOddDesc {
 		}
 		
 		Collections.sort(evenIndex);
-		oddIndex.sort(Collections.reverseOrder());
+		
+		Collections.sort(oddIndex, Collections.reverseOrder());
+//		oddIndex.sort(Collections.reverseOrder());
 		int even = 0;
 		int odd = 0;
 		for(int i=0; i<arr.length; i++) {

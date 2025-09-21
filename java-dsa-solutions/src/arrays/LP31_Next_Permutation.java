@@ -12,7 +12,8 @@ of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
 public class LP31_Next_Permutation {
 
 	public static void main(String[] args) {
-		int[] arr = {5,4,7,5,3,2};
+//		int[] arr = {5,4,7,5,3,2};
+		int[] arr = {5,4,7,3};
 		nextPermutation(arr);
 		System.out.println(Arrays.toString(arr));
 	}

@@ -15,7 +15,7 @@ public class LP53_Maximum_Subarray {
 
 	public static void main(String[] args) {
 		int[] nums = {5,4,-1,7,8};
-		System.out.println(maxSubArraySol2(nums));
+		System.out.println(maxSubArray(nums));
 	}
 	
 	// Brute Force O(n²)
@@ -26,9 +26,7 @@ public class LP53_Maximum_Subarray {
 			int sum = 0;
 			for(int j=i; j<nums.length; j++) {
 				sum+=nums[j];
-				if(sum>max) {
-					max = sum;
-				}
+				max = Math.max(max, sum);
 			}
 		}
 		return max;
@@ -39,6 +37,7 @@ public class LP53_Maximum_Subarray {
 		int maxSum = nums[0];
 		int currentSum = nums[0];
 		
+		// Already index 0 initialized to currentSum. So start with index 1
 		for(int i=1; i<nums.length; i++) {
 			//Eg: currentSum = Math.max(4, -5 + 4) = Math.max(4, -1) = 4
 			currentSum = Math.max(nums[i], currentSum+nums[i]);

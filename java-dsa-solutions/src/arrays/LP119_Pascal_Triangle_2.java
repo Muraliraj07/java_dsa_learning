@@ -26,27 +26,24 @@ public class LP119_Pascal_Triangle_2 {
 		int rowIndex = 3;
 		System.out.println(pascalTriangeRowReturn(rowIndex));
 	}
-
-	public static List<Integer> pascalTriangeRowReturn(int rowIndex) {
-
-		List<List<Integer>> result = new ArrayList<>();
-
-		for (int i = 0; i <=rowIndex+1; i++) { // Iterating till the index
-			List<Integer> row = new ArrayList<>();
-			for (int j = 0; j <= i; j++) {
-				if (j == 0 || j == i) {
+	
+	public static List<Integer> pascalTriangeRowReturn(int rowIndex){
+		List<List<Integer>> rows = new ArrayList<List<Integer>>();
+		for(int i=0; i<= rowIndex; i++) {
+			List<Integer> row = new ArrayList<Integer>();
+			for(int j=0; j<=i; j++) {
+				if(j==0 || j==i) {
 					row.add(1);
-				} else {
-					List<Integer> preRow = result.get(i - 1);
-					int val = preRow.get(j - 1) + preRow.get(j);
+				}
+				else {
+					List<Integer> preRow = rows.get(i-1);
+					int val = preRow.get(j-1) + preRow.get(j);
 					row.add(val);
 				}
 			}
-			result.add(row);
+			rows.add(row);
 		}
-
-		return result.get(rowIndex);
-
+		return rows.get(rowIndex);
 	}
 
 }

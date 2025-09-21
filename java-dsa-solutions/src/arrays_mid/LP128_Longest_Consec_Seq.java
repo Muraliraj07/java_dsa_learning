@@ -2,6 +2,7 @@ package arrays_mid;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,10 +23,10 @@ Therefore its length is 4.
 public class LP128_Longest_Consec_Seq {
 
 	public static void main(String[] args) {
-		int arr[] = {0,1,2,5,6,7,8};
+		int arr[] = {0,1,2,5,5,6,7,8,8};
 		System.out.println(longestConsectiveCount(arr));
 	}
-	
+// SOL: 1	
 	public static int longestConsectiveCount(int[] arr) {
 		int maxLeng = 0;
 		
@@ -33,12 +34,16 @@ public class LP128_Longest_Consec_Seq {
 //		for(int num : arr) {
 //			nums.add(num);
 //		}
-		Set<Integer> set = Arrays.stream(arr)
-				.boxed() // will convert from int to Integer (autobox)
-				.collect(Collectors.toSet());
+//		Set<Integer> set = Arrays.stream(arr)
+//				.boxed() // will convert from int to Integer (autobox)
+//				.collect(Collectors.toSet());
+		
+		Set<Integer> set = new HashSet<>();
+        for (int num : arr) set.add(num);
 		
 		for(int num : set) {
-			//if(!set.contains(num-1)) {
+			// Only start from the beginning of a sequence
+			if(!set.contains(num-1)) {
 				int currentNum = num;
 				int currentMax = 1;
 				
@@ -47,7 +52,26 @@ public class LP128_Longest_Consec_Seq {
 					currentMax++;
 				}
 				maxLeng = Math.max(maxLeng, currentMax);
-			//}
+			}
+		}
+		return maxLeng;
+	}
+	
+// SOL:2	
+	public static int longCon(int[] arr) {
+		int maxLeng = Integer.MIN_VALUE;
+		int currMaxLeng = 1;
+		
+		for(int i=0; i<arr.length-1; i++) {
+			if(arr[i]+1 == arr[i+1]) {
+				currMaxLeng++;
+			}
+			else {
+				currMaxLeng = 1;
+			}
+			if(maxLeng<currMaxLeng) {
+				maxLeng = currMaxLeng;
+			}
 		}
 		return maxLeng;
 	}
