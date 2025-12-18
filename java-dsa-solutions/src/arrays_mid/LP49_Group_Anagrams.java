@@ -13,7 +13,7 @@ public class LP49_Group_Anagrams {
 
 	public static void main(String args[]) {
 		String[] words = {"eat","tea","tan","ate","nat","bat"};
-		groupAnagrams(words);
+		usingStream(words);
 	}
 	
 	public static void groupAnagrams(String[] strs){
@@ -50,16 +50,22 @@ inserts it into the map, and then returns it.
 		}
 	}
 	
-	public static void groupAnag(String[] strs){
-		List<String> words = Arrays.asList(strs);
-		Map<String, List<String>> anagramGroups = words.stream().collect(Collectors.groupingBy(word -> {
-			char[] arr = ((String) word).toCharArray();
-			Arrays.sort(arr);
-			return new String(arr);
-		}));
+	public static void usingStream(String[] strs) {
+	//	List<String> words = Arrays.asList(strs);
+		
+		Map<String, List<String>> anagramGroups = Arrays.stream(strs)
+				.collect(Collectors.groupingBy(word  -> {
+					char[] chars = word.toCharArray();
+					Arrays.sort(chars);
+					return new String(chars);
+				}
+				));
+		System.out.println(anagramGroups.values());
 		
 		anagramGroups.values().stream()
 		.filter(group -> group.size() > 1)
 		.forEach(group -> System.out.println("Anagram group: " + group));
+
 	}
+	
 }

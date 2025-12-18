@@ -80,6 +80,14 @@ public class Practice2 {
 			freqMap.put(c, freqMap.getOrDefault(c, 0)+1);
 		}
 		
+		int[] nums = {1, 3, 2, 1, 3};
+		
+		HashMap<Integer, Integer> count = new HashMap<Integer, Integer>();
+		for(int i: nums) {
+			count.put(i, count.getOrDefault(i, 0)+1);
+		}
+		System.out.println(count);
+		
 		for(Map.Entry<Character, Integer> entry: freqMap.entrySet()) {
 			if(entry.getValue()==1) {
 				System.out.println("First non-repeat character is "+entry.getKey());

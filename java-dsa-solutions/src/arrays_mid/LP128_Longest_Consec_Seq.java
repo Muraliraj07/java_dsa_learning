@@ -25,6 +25,9 @@ public class LP128_Longest_Consec_Seq {
 	public static void main(String[] args) {
 		int arr[] = {0,1,2,5,5,6,7,8,8};
 		System.out.println(longestConsectiveCount(arr));
+		
+		String s = "abcdehij";
+		System.out.println("For String: " +longCon(s));
 	}
 // SOL: 1	
 	public static int longestConsectiveCount(int[] arr) {
@@ -75,5 +78,27 @@ public class LP128_Longest_Consec_Seq {
 		}
 		return maxLeng;
 	}
+	
+// SOL:1 For String	
+	public static int longCon(String s) {
+	    if (s == null || s.length() == 0) return 0;
+
+	    int maxLen = 1;
+	    int currLen = 1;
+
+	    for (int i = 0; i < s.length() - 1; i++) {
+	        // Check if next character is consecutive (e.g., 'a' -> 'b')
+	        if (s.charAt(i + 1) - s.charAt(i) == 1) {  // ASCII Code Checking
+	            currLen++;
+	        } else {
+	            currLen = 1;
+	        }
+
+	        maxLen = Math.max(maxLen, currLen);
+	    }
+
+	    return maxLen;
+	}
+
 
 }

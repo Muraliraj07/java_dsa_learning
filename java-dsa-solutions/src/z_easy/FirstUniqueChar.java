@@ -1,7 +1,8 @@
 package z_easy;
 
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /*
  * Input:  "leetcode"
@@ -10,7 +11,9 @@ import java.util.Map.Entry;
 public class FirstUniqueChar {
 
 	public static void main(String[] args) {
-		System.out.println(findUinqueChar("HelHlo"));
+		String s = "HHello";
+		System.out.println(findUinqueChar(s));
+		System.out.println(usingStream(s));
 	}
 	
 	public static int findUinqueChar(String str) {
@@ -37,9 +40,21 @@ public class FirstUniqueChar {
 				}
 				currentUniqCharsCount++;
 			}
-			
 		}
-		
 		return -1;
 	}
+	
+	public static char usingStream(String str) {
+		char res = 0;
+		res = str.chars().mapToObj(c -> Character.toLowerCase((char) c))
+		.filter(Character::isLetter)   // Function.identity() -> Group identical items together
+		.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+		.entrySet().stream()
+		.filter(e -> e.getValue() == 1)
+		.map(e -> e.getKey())
+		.findFirst().orElseGet(null);
+		
+		return res;
+	}
+	
 }

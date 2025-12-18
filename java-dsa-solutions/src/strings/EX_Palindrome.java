@@ -1,6 +1,6 @@
 package strings;
 
-public class Palindrome {
+public class EX_Palindrome {
 
 	public static void main(String[] args) {
 		String str = "A man, a plan, a canal: Panama";

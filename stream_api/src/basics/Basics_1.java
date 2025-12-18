@@ -1,6 +1,9 @@
 package basics;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,13 +15,21 @@ public class Basics_1 {
 	
 	public static void basics() {
 		List<String> names = Arrays.asList("Ankit", "Ravi", "Amit", "John", "Ajay");
+		names.add(0, "Jarwiz");
 		
 		List<Integer> nums = Arrays.asList(2, 3, 4, 5, 6, 7);
 		
 		List<String> emails = Arrays.asList("a@gmail.com", "b@yahoo.com", "c@gmail.com");
 		
+		HashSet<String> set = new HashSet<String>();
+		set.add(null);
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put(null, null);
+		
 		List<String> filterNames = names.stream()
 		.filter(name -> name.startsWith("A"))
+		.sorted(Comparator.comparingInt(String::length))
 		.collect(Collectors.toList());
 		
 		System.out.println("Filter start with A -> " + filterNames +"\n");

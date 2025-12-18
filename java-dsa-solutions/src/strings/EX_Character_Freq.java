@@ -34,4 +34,5 @@ public class EX_Character_Freq {
 			System.out.println(count.getKey() + "=" + count.getValue());
 		}
 	}
+	
 }

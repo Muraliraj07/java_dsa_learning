@@ -20,12 +20,12 @@ So checking up to √36 = 6 is enough.
 	public static boolean isPrime(int num) {
 		if (num <=1) return false;
 		if(num == 2) return true;
-		if(num % 2 == 0) return false; // To check quickly without looping -> like 2,4,6,8...
+		if(num % 2 == 0) return false; // even numbers > 2 not prime
 		
 		for(int i=3; i<=Math.sqrt(num); i++) {
 			if(num % i == 0) return false;
 		}
-		return true;
+		return true;  // none divides num return true
 	}
 	
 	public static int reverse(int n) {

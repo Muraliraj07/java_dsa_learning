@@ -47,6 +47,10 @@ public class Examples {
 				.reduce(0, Integer::sum);
 		System.out.println("SUM -> " + sum);
 		
+		int difference = nums.stream()
+				.reduce(0, (a, b) -> a-b);
+		System.out.println("SUM -> " + difference);
+		
 		int product = nums.stream()
 				.reduce(1, (a,b) -> a*b);
 		System.out.println("PRODUCT -> " + product);
@@ -71,12 +75,18 @@ public class Examples {
 		System.out.println("SECOND DUPLICATE -> " + firstDuplicate);
 		
 		Map<String, Long> freqMap = chars.stream()
-				.collect(Collectors.groupingBy(n -> n, LinkedHashMap::new, Collectors.counting()));
+				.collect(Collectors.groupingBy(n -> n, Collectors.counting()));
 		Optional<String> firstNonRepChar = freqMap.entrySet().stream()
 				.filter(entry -> entry.getValue() ==1)
 				.map(Map.Entry::getKey)
 //				.skip(1)
 				.findFirst();
 		System.out.println("FIRST NON-REP CHAR -> " + firstNonRepChar );
+	
+		
+		Map<String, Long> maps = chars.stream().collect(Collectors.groupingBy(a-> a , Collectors.counting()));
+	
+		
+		
 	}
 }

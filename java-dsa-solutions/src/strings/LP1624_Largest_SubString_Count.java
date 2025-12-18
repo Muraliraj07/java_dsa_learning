@@ -8,9 +8,35 @@ import java.util.Set;
 public class LP1624_Largest_SubString_Count {
 
 	public static void main(String args[]) {
-		String s = "abcddesacbb";
+		String s = "abcbef";
+		
+		System.out.println(longSubString(s));
+		
 		System.out.println(subStringCount(s));
+		
 		System.out.println(lengthOfLongestSubstringSol1(s));
+		
+	}
+	
+	public static String longSubString(String s) {
+		Map<Character, Integer> mapFreq = new HashMap<>();
+		int start = 0;
+		int maxLeng = 0;
+		int maxStart = 0;
+		
+		for(int i=0; i<s.length(); i++) {
+			char c = s.charAt(i);
+			if(mapFreq.containsKey(c)) {
+				start = Math.max(start, mapFreq.get(c)+1);
+			}
+			mapFreq.put(c, i);
+			if(i - start + 1 > maxLeng) { // i - start + 1 - how many characters exist between start and i (inclusive)
+				maxLeng = i - start+1;
+				maxStart = start;
+			}
+		}
+		return s.substring(maxStart, maxStart + maxLeng);
+		
 	}
 	
 	// With duplicates - Longest distance between same char
@@ -66,4 +92,5 @@ i=4: 'b' again → move start from 1 → 2 → window = "cab"
 		}
 		return maxLeng;
 	}
+	
 }

@@ -28,7 +28,7 @@ public class LP121_Best_Time_to_Buy_Sell_Stock {
 	}
 	
 	public static int maxProfit(int[] prices) {
-		int maxPrice = 0;
+		int maxProfit = 0;
 		int minPrice = Integer.MAX_VALUE;
 		
 		for(int price: prices) {
@@ -36,10 +36,10 @@ public class LP121_Best_Time_to_Buy_Sell_Stock {
 				minPrice = price;
 			}
 			else {
-				maxPrice = Math.max(maxPrice, price - minPrice);
+				maxProfit = Math.max(maxProfit, price - minPrice);
 			}
 		}
-		return maxPrice;
+		return maxProfit;
 		
 	}
 
