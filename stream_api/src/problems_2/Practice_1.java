@@ -1,4 +1,4 @@
-package problems_2;
+package src.problems_2;
 
 import java.util.ArrayList;
 import java.util.Comparator;

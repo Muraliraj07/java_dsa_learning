@@ -1,4 +1,4 @@
-package termination_operations;
+package src.termination_operations;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -11,15 +11,24 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /*
-3. Terminal Operations
-	- toArray(): Converts the stream into an array.
-	- min(), max(): Finds minimum or maximum using a comparator.
-	- findFirst(), findAny(): Returns first or any element.
-	- anyMatch(), allMatch(), noneMatch(): Predicate checks.
-	- allMatch()
-	- noneMatch()
-	- reduce(): Reduces stream to a single value.
-*/
+These operations trigger Stream execution and produce a final result or perform an action.
+Operation	Return type	Purpose
+* toArray(): 		Converts the stream into an array.
+* collect()			Collection / other result	Store results
+* count()			long		Count elements
+* forEach()			void		Perform action on each element
+* reduce()			Depends on result	Combine elements
+* min()				Optional<T>		Find minimum
+* max()				Optional<T>		Find maximum
+* findFirst()		Optional<T>		Find first element
+* findAny()			Optional<T>		Find any element
+* anyMatch()		boolean			Check whether any match
+* allMatch()		boolean			Check whether all match
+* noneMatch()		boolean			Check whether none match
+* reduce(): 		Reduces stream to a single value.
+
+ */
+
 public class Examples {
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package problems_2;
+package src.problems_2;
 
 public class Employee {
 

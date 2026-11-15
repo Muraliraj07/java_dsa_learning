@@ -6,6 +6,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*1. Intermediate Operations
+These operations transform a Stream or filter its elements and return another Stream.
+
+They are lazy, meaning they don't execute until a terminal operation is invoked.
+Operation	Purpose	Example
+
+* filter()	 Filter elements	              	num > 5
+ 	- filter() is used when you want to retrieve only those elements that satisfy a particular condition.
+ 	- It accepts a Predicate functional interface, which returns a boolean (true or false).
+ 	   (Predicate is a functional interface in Java that checks a condition and returns a boolean (true or false))
+
+* map()	     Transform elements	              	String::toUpperCase
+    - map() is used when you want to convert one element into another form.
+    - It accepts a Function functional interface.
+
+* flatMap()	 Flatten nested collections	      	Convert List of Lists into List
+* distinct() Remove duplicates	              	Unique elements
+* sorted()	 Sort elements						Ascending order
+* limit()	 Restrict number of elements		First 5 elements
+* skip()	 Skip elements						Skip first 2
+* peek()	 Inspect elements					Debugging
+* takeWhile() Take elements while condition is true	Java 9+
+* dropWhile() Drop elements while condition is true	Java 9+
+
+ */
+
+/*
+ntermediate operations have two subcategories:
+- Stateless: filter(), map(), peek()
+- Stateful: sorted(), distinct()
+ */
 public class Easy {
 
 	public static void main(String[] args) {
