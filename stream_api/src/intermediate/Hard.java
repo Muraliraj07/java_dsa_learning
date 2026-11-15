@@ -1,4 +1,4 @@
-package intermediate;
+package src.intermediate;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,10 +19,10 @@ public class Hard {
 		List<Integer> nums = Arrays.asList(3, 4, 1, 2, 5, 6);
 
 		
-		List<Integer> distinctNums = numsWithDuplicates.stream()
+		List<Integer> freqEqOne = numsWithDuplicates.stream()
 				.filter(num -> Collections.frequency(numsWithDuplicates, num) == 1)
 				.toList();
-		System.out.println("Distinct Nums -> "+ distinctNums + "\n");
+		System.out.println("Distinct Nums -> "+ freqEqOne + "\n");
 		
 		Map<Integer, Long> freqCount = numsWithDuplicates.stream()
 				.collect(Collectors.groupingBy(n-> n, Collectors.counting()));
